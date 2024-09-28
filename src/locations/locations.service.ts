@@ -28,12 +28,12 @@ export class LocationsService {
     return location
   }
 
-  update(id: number, updateLocationDto: UpdateLocationDto) {
-    const location = this.locationRepository.preload({
+  async update(id: number, updateLocationDto: UpdateLocationDto) {
+    const location = await this.locationRepository.preload({
       locationID: id,
       ...updateLocationDto
     })
-    return location
+    return this.locationRepository.save(location);
   }
 
   remove(id: number) {
