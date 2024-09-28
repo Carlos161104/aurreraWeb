@@ -1,5 +1,5 @@
 import { Provider } from "src/providers/entities/provider.entity";
-import { Entity, ManyToOne,  Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, ManyToOne,  Column, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
 import { UUID } from "typeorm/driver/mongodb/bson.typings";
 
 @Entity()
@@ -16,6 +16,9 @@ export class Product {
     //provider: string;
     @ManyToOne(() => Provider , (provider) => provider.products, {
         eager: true
+    })
+    @JoinColumn({
+        name: 'providerId'
     })
     provider: Provider
 }
