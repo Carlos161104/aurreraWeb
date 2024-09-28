@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Provider } from "src/providers/entities/provider.entity";
+import { Entity, ManyToOne,  Column, PrimaryGeneratedColumn } from "typeorm";
 import { UUID } from "typeorm/driver/mongodb/bson.typings";
 
 @Entity()
@@ -13,4 +14,8 @@ export class Product {
     countSeal: number;
     //@Column({type: "uuid"})
     //provider: string;
+    @ManyToOne(() => Provider , (provider) => provider.products, {
+        eager: true
+    })
+    provider: Provider
 }
