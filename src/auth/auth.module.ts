@@ -3,8 +3,8 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { JwtModule } from "@nestjs/jwt";
-import { EXPIRES_IN, JWT_KEY } from "./constants/jwt.constants";
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { EXPIRES_IN, JWT_KEY } from './constants/jwt.constants';
 
 @Module({
   imports: [
@@ -13,10 +13,11 @@ import { EXPIRES_IN, JWT_KEY } from "./constants/jwt.constants";
       secret: JWT_KEY,
       signOptions: {
         expiresIn: EXPIRES_IN,
-      }
-    })
+      },
+    }),
   ],
   controllers: [AuthController],
   providers: [AuthService],
+  exports: [JwtModule, AuthService],
 })
 export class AuthModule {}
