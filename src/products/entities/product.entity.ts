@@ -1,20 +1,31 @@
 import { Provider } from "src/providers/entities/provider.entity";
-import { Entity, ManyToOne,  Column, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
-import { UUID } from "typeorm/driver/mongodb/bson.typings";
+import { Entity, ManyToOne, Column, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 export class Product {
-    @PrimaryGeneratedColumn("uuid")
+    @PrimaryGeneratedColumn('uuid')
     productId: string;
-    @Column({type: "text"})
+
+    @ApiProperty({
+        default: 'Nombre del producto',
+    })
+    @Column({ type: 'text' })
     productName: string;
-    @Column({type: "float"})
+
+    @ApiProperty({
+        default: 0.0,
+    })
+    @Column({ type: 'float' })
     price: number;
-    @Column({type: "int"})
+
+    @ApiProperty({
+        default: 0,
+    })
+    @Column({ type: 'int' })
     countSeal: number;
-    //@Column({type: "uuid"})
-    //provider: string;
-    @ManyToOne(() => Provider , (provider) => provider.products, {
+
+    @ManyToOne(() => Provider, (provider) => provider.products, {
         eager: true
     })
     @JoinColumn({
