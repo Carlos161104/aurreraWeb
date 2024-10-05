@@ -3,13 +3,16 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
-    userId: string
+    userId: string;
+
     @Column('text')
-    userEmail: string
+    userEmail: string;
+
     @Column('text')
-    userPassword: string
+    userPassword: string;
+
     @Column('text', {
-        default: 'Employee'
+        default: () => "array['Employee']::text[]"
     })
     userRoles: string[];
 }

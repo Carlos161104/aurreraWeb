@@ -2,11 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, U
 import { ProvidersService } from './providers.service';
 import { CreateProviderDto } from './dto/create-provider.dto';
 import { UpdateProviderDto } from './dto/update-provider.dto';
-import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { UserData } from 'src/auth/decorators/user.decorator';
 import { User } from 'src/auth/entities/user.entity';
+import { Auth } from 'src/auth/decorators/auth.decorator';
 
-@UseGuards(AuthGuard)
+
 @Controller('providers')
 export class ProvidersController {
   constructor(private readonly providersService: ProvidersService) {}
@@ -16,6 +16,7 @@ export class ProvidersController {
     return this.providersService.create(createProviderDto);
   }
 
+  @Auth('Employee')
   @Get()
   findAll(@UserData() user:User) {
     if(user.userRoles.includes('Employee')) throw new UnauthorizedException("Dont have permission to access this resource");
