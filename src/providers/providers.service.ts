@@ -41,7 +41,7 @@ constructor(
   }
 
   remove(id: string) {
-    this.providerRepository.delete({
+    return this.providerRepository.delete({
       providerId: id
     })
   }
