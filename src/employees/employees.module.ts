@@ -8,6 +8,7 @@ import { AuthModule } from 'src/auth/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Employee]),
+    //AWSModule,
     AuthModule
   ],
   controllers: [EmployeesController],

@@ -7,6 +7,7 @@ import { LocationsModule } from './locations/locations.module';
 import { ManagersModule } from './managers/managers.module';
 import { RegionsModule } from './regions/regions.module';
 import { AuthModule } from './auth/auth.module';
+import { AwsModule } from './aws/aws.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -20,7 +21,7 @@ import { AuthModule } from './auth/auth.module';
       autoLoadEntities: true,
       synchronize: true
   }), EmployeesModule, 
-  ProductsModule, ProvidersModule, LocationsModule, ManagersModule, RegionsModule, AuthModule],
+  ProductsModule, ProvidersModule, LocationsModule, ManagersModule, RegionsModule, AuthModule, AwsModule],
   controllers: [],
   providers: [],
 })
